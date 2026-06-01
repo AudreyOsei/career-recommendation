@@ -99,13 +99,17 @@ include("includes/db.php");
             <div class="col-md-6">
 
                 <h1 class="fw-bold display-5 mb-4">
-                    Find the Career Path That Matches You
+                    Receive Personalized and Explainable Career Recommendations
                 </h1>
 
                 <p class="lead text-muted">
-                    Discover career paths that match your interests,
-                    skills, and preferences through personalized and
-                    explainable recommendations.
+                   Receive intelligent and explainable career
+                   recommendations based on your interests,
+                   strengths, preferences, and personal responses.
+
+                   The system analyses your inputs to suggest
+                   relevant career paths and explain why they
+                   may be suitable for you.
                 </p>
 
                 <a href="student/questionnaire.php" class="btn btn-primary btn-lg mt-3">

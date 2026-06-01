@@ -51,13 +51,13 @@
 
                     <p class="text-muted mb-4">
 
-                        Thank you for completing your
-                        career assessment.
+                      Thank you for completing your
+                      career assessment.
 
-                        Your responses have been processed
-                        successfully and are ready for
-                        recommendation analysis.
-
+                      Your assessment has been submitted
+                      successfully. You can now view your
+                      personalized career recommendation
+                      based on your responses.
                     </p>
 
                     <a href="recommendation.php"

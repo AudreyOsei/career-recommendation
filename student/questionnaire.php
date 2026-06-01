@@ -46,8 +46,11 @@ include("../includes/db.php");
                     </h2>
 
                     <p class="text-muted text-center mb-5">
-                        Answer the questions below to receive
-                        personalized career recommendations.
+                       This assessment collects information
+                       about your interests, strengths,
+                       preferences, and career expectations
+                       to generate personalized and explainable
+                       career recommendations.
                     </p>
 
                     <form action="assessment_success.php" method="POST">
