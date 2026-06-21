@@ -1,6 +1,136 @@
 <?php
+session_start();
+
 include("../includes/db.php");
+
+global $conn;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $_SESSION['career_data'] = [
+
+        'fullname' => $_POST['fullname'] ?? '',
+        'course' => $_POST['course'] ?? '',
+        'level' => $_POST['level'] ?? '',
+        'age' => $_POST['age'] ?? '',
+
+        'interest' => $_POST['interest'] ?? [],
+        'skill' => $_POST['skill'] ?? '',
+        'environment' => $_POST['environment'] ?? '',
+
+        'activities' => $_POST['activities'] ?? '',
+        'career_interest' => $_POST['career_interest'] ?? '',
+        'challenges' => $_POST['challenges'] ?? '',
+
+        'goal' => $_POST['goal'] ?? []
+
+    ];
+
+    // Save assessment to database
+
+    $fullname =
+        $_SESSION['career_data']['fullname'];
+
+    $course =
+        $_SESSION['career_data']['course'];
+
+    $level =
+        $_SESSION['career_data']['level'];
+
+    $age =
+        $_SESSION['career_data']['age'];
+
+    $interest =
+        implode(
+            ", ",
+            $_SESSION['career_data']['interest']
+        );
+
+    $skill =
+        $_SESSION['career_data']['skill'];
+
+    $environment =
+        $_SESSION['career_data']['environment'];
+
+    $goals =
+        implode(
+            ", ",
+            $_SESSION['career_data']['goal']
+        );
+
+    $activities =
+        $_SESSION['career_data']['activities'];
+
+    $career_interest =
+        $_SESSION['career_data']['career_interest'];
+
+    $challenges =
+        $_SESSION['career_data']['challenges'];
+    
+    $activities =
+    mysqli_real_escape_string(
+        $conn,
+        $activities
+    );
+
+$career_interest =
+    mysqli_real_escape_string(
+        $conn,
+        $career_interest
+    );
+
+$challenges =
+    mysqli_real_escape_string(
+        $conn,
+        $challenges
+    );
+
+    $sql = "
+    INSERT INTO assessment_responses (
+        fullname,
+        course,
+        level,
+        age,
+        interest,
+        skill,
+        environment,
+        goals,
+        activities,
+        career_interest,
+        challenges
+    )
+
+    VALUES (
+        '$fullname',
+        '$course',
+        '$level',
+        '$age',
+        '$interest',
+        '$skill',
+        '$environment',
+        '$goals',
+        '$activities',
+        '$career_interest',
+        '$challenges'
+    )
+    ";
+
+if (mysqli_query($conn, $sql)) {
+
+    $_SESSION['response_id'] =
+        mysqli_insert_id($conn);
+
+    header("Location: assessment_success.php");
+    exit();
+
+} else {
+
+    die("Database Error: " . mysqli_error($conn));
+}
+
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +183,7 @@ include("../includes/db.php");
                        career recommendations.
                     </p>
 
-                    <form action="assessment_success.php" method="POST">
+                    <form method="POST">
 
                         <!-- SECTION 1 -->
                         <h4 class="fw-bold text-primary mb-4">
