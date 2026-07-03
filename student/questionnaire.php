@@ -1,9 +1,16 @@
 <?php
 session_start();
 
-include("../includes/db.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-global $conn;
+require_once("../includes/db.php");
+
+if (!isset($conn) || !$conn) {
+    die("Database connection failed.");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -85,8 +92,11 @@ $challenges =
         $challenges
     );
 
+    $user_id = $_SESSION['user_id'];
+
     $sql = "
     INSERT INTO assessment_responses (
+        user_id,
         fullname,
         course,
         level,
@@ -101,6 +111,7 @@ $challenges =
     )
 
     VALUES (
+        '$user_id',
         '$fullname',
         '$course',
         '$level',
@@ -164,12 +175,12 @@ if (mysqli_query($conn, $sql)) {
 <div class="container py-5">
 
     <div class="row justify-content-center">
+<div class="text-center mb-4">
 
-        <div class="col-lg-9">
-
-            <div class="card shadow border-0">
-
-                <div class="card-body p-5">
+    <h5 class="text-primary">
+        Welcome,
+        <strong><?= htmlspecialchars($_SESSION['name']); ?></strong> 👋
+    </h5>
 
                     <h2 class="fw-bold text-center mb-3">
                         Career Assessment Questionnaire

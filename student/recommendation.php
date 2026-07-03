@@ -1,9 +1,16 @@
 <?php
 session_start();
 
-include("../includes/db.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-global $conn;
+require_once("../includes/db.php");
+
+if (!isset($conn) || !$conn) {
+    die("Database connection failed.");
+}
 
 $careers = require("../database/career_data.php");
 
@@ -24,6 +31,37 @@ $goals = $userData['goal'] ?? [];
 $recommendedCareers = [];
 
 $recommendedCareers = [];
+
+// -------------------------
+// AI Behaviour Analysis
+// -------------------------
+
+$aiProfile = analyzeUserProfile($userData);
+
+// If Gemini fails, use safe defaults
+if (empty($aiProfile)) {
+
+    $aiProfile = [
+
+        "confidence" => "Medium",
+
+        "motivation" => "Medium",
+
+        "technical" => 50,
+
+        "creativity" => 50,
+
+        "leadership" => 50,
+
+        "communication" => 50,
+
+        "problem_solving" => 50,
+
+        "recommended_careers" => []
+
+    ];
+
+}
 
 foreach ($careers as $career) {
 
@@ -95,6 +133,90 @@ foreach ($careers as $career) {
             " as important career goals";
     }
 
+    /*----------------------------------
+AI Behaviour Analysis
+-----------------------------------*/
+
+// AI recommended this career
+if (
+    in_array(
+        $career['name'],
+        $aiProfile['recommended_careers']
+    )
+) {
+
+    $score += 20;
+
+    $reasons[] =
+        "AI identified this career as a strong match based on your written responses";
+
+}
+
+// Technical ability
+if (
+    in_array("Technology", (array)$career['category'])
+    &&
+
+    $aiProfile['technical'] >= 80
+) {
+
+    $score += 10;
+
+    $reasons[] =
+        "your responses demonstrate strong technical ability";
+
+}
+
+// Creativity
+if (
+
+    $aiProfile['creativity'] >= 80
+
+) {
+
+    if (
+
+        stripos(
+            $career['description'],
+            "creative"
+        ) !== false
+
+    ) {
+
+        $score += 10;
+
+        $reasons[] =
+            "your responses indicate strong creativity";
+
+    }
+
+}
+
+// Leadership
+if (
+
+    $aiProfile['leadership'] >= 80
+
+) {
+
+    if (
+
+        stripos(
+            $career['name'],
+            "Manager"
+        ) !== false
+
+    ) {
+
+        $score += 10;
+
+        $reasons[] =
+            "you demonstrated leadership qualities";
+
+    }
+
+}
+
     // Save recommendation
     if ($score >= 40) {
 
@@ -127,12 +249,13 @@ $recommendedCareers = array_slice(
 for ($i = 0; $i < min(2, count($recommendedCareers)); $i++) {
 
     $recommendedCareers[$i]['explanation'] =
-        generateCareerExplanation(
-            $recommendedCareers[$i]['name'],
-            $userData,
-            $recommendedCareers[$i]['explanation']
-        );
-}
+       generateCareerExplanation(
+    $recommendedCareers[$i]['name'],
+    $userData,
+    $recommendedCareers[$i]['explanation'],
+    $aiProfile
+);
+} 
 
 $response_id =
     $_SESSION['response_id'] ?? 0;
@@ -178,8 +301,6 @@ foreach ($recommendedCareers as $career) {
         '$explanation'
     )
     ";
-
-    mysqli_query($conn, $sql);
 
   if (mysqli_query($conn, $sql)) {
 

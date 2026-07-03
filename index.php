@@ -1,239 +1,235 @@
-<?php
-
-include("includes/db.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, intial-scale=1.0">
-    <title>Career Recommendation System</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Career Recommendation System
+    </title>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
 
         body{
-            background-color:#f8f9fa;
+            background:
+            linear-gradient(
+                135deg,
+                #0d6efd,
+                #6f42c1
+            );
+            min-height:100vh;
         }
 
-        .hero-section{
-            padding:100px 0;
+        .hero{
+            padding-top:120px;
+            padding-bottom:120px;
         }
 
         .feature-card{
-            border:none;
-            border-radius:15px;
-            transition:0.3s ease;
+            transition:0.3s;
         }
 
         .feature-card:hover{
-            transform:translateY(-5px);
-        }
-
-        footer{
-            background:#0d6efd;
-            color:white;
-            padding:20px;
+            transform:translateY(-10px);
         }
 
     </style>
 
 </head>
-
 <body>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-        <div class="container">
 
-            <a class="navbar-brand fw-bold" href="#">Career Recommendation System</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
 
-            <button class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
-
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-
-            <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">
-                        About
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Career Assessment
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-    </div>
-</nav>
-
-    <!-- Hero Section -->
-  <section class="hero-section">
     <div class="container">
 
-        <div class="row align-items-center">
+        <a class="navbar-brand fw-bold">
 
-            <div class="col-md-6">
+            Career Recommendation System
 
-                <h1 class="fw-bold display-5 mb-4">
-                    Receive Personalized and Explainable Career Recommendations
-                </h1>
+        </a>
 
-                <p class="lead text-muted">
-                   Receive intelligent and explainable career
-                   recommendations based on your interests,
-                   strengths, preferences, and personal responses.
+        <div>
 
-                   The system analyses your inputs to suggest
-                   relevant career paths and explain why they
-                   may be suitable for you.
-                </p>
+            <a
+                href="student/login.php"
+                class="btn btn-light me-2">
 
-                <a href="student/questionnaire.php" class="btn btn-primary btn-lg mt-3">
-                    Start Career Assessment
-                </a>
+                Login
 
-            </div>
+            </a>
 
-            <div class="col-md-6 text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                     class="img-fluid"
-                     width="350">
-            </div>
+            <a
+                href="student/registration.php"
+                class="btn btn-outline-light">
+
+                Register
+
+            </a>
 
         </div>
 
-    </section>
-
-<!-- Features -->
-<section class="py-5 bg-white">
-
-    <div class="container text-center">
-
-        <h2 class="fw-bold mb-5">
-            System Features
-        </h2>
-
-        <div class="row g-4">
-
-            <div class="col-md-4">
-
-                <div class="card shadow-sm feature-card p-4">
-
-                    <i class="bi bi-person-check-fill
-                    text-primary fs-1 mb-3"></i>
-
-                    <h5 class="fw-bold">
-                        Personalized Recommendations
-                    </h5>
-
-                    <p class="text-muted">
-                        Career suggestions based on user interests,
-                        skills, and preferences.
-                    </p>
-
-                </div>
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card shadow-sm feature-card p-4">
-
-                    <i class="bi bi-lightbulb-fill
-                    text-warning fs-1 mb-3"></i>
-
-                    <h5 class="fw-bold">
-                        Explainable Guidance
-                    </h5>
-
-                    <p class="text-muted">
-                        Understand why a career is recommended
-                        through clear explanations.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card shadow-sm feature-card p-4">
-
-                    <i class="bi bi-bar-chart-fill
-                    text-success fs-1 mb-3"></i>
-
-                    <h5 class="fw-bold">
-                        Skills Matching
-                    </h5>
-
-                    <p class="text-muted">
-                        Match personal strengths and interests
-                        with suitable career paths.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
     </div>
-</section>
 
-<!-- About -->
-<section id="about" class="py-5">
+</nav>
 
-    <div class="container text-center">
+<section class="hero text-center text-white">
 
-        <h2 class="fw-bold mb-4">
-            About the System
-        </h2>
+    <div class="container">
 
-        <p class="text-muted col-md-8 mx-auto">
+        <h1 class="display-4 fw-bold mb-4">
 
-            This system helps undergraduate students make better
-            career decisions by providing intelligent and
-            explainable recommendations based on individual
-            interests, preferences, and strengths.
+            Discover Your Ideal Career Path
+
+        </h1>
+
+        <p class="lead mb-5">
+
+            An AI-powered career recommendation
+            platform that helps students and
+            professionals discover careers
+            that match their interests,
+            skills and aspirations.
 
         </p>
 
+        <a
+            href="student/login.php"
+            class="btn btn-light btn-lg px-5">
+
+            Get Started
+
+        </a>
+
     </div>
+
 </section>
 
-<!-- Footer -->
-<footer class="text-center">
+<div class="container mb-5">
 
-    <p class="mb-0">
-        © 2026 Career Recommendation System |
-        Final Year Project
-    </p>
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+
+            <div
+                class="card feature-card shadow border-0 h-100">
+
+                <div class="card-body text-center p-5">
+
+                    <i
+                        class="bi bi-ui-checks-grid
+                               fs-1 text-primary">
+
+                    </i>
+
+                    <h4 class="mt-4">
+
+                        Interactive Assessment
+
+                    </h4>
+
+                    <p>
+
+                        Complete an intelligent
+                        questionnaire designed to
+                        understand your strengths
+                        and preferences.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+
+            <div
+                class="card feature-card shadow border-0 h-100">
+
+                <div class="card-body text-center p-5">
+
+                    <i
+                        class="bi bi-robot
+                               fs-1 text-primary">
+
+                    </i>
+
+                    <h4 class="mt-4">
+
+                        AI Recommendations
+
+                    </h4>
+
+                    <p>
+
+                        Receive personalized
+                        career recommendations
+                        enhanced by Artificial
+                        Intelligence.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+
+            <div
+                class="card feature-card shadow border-0 h-100">
+
+                <div class="card-body text-center p-5">
+
+                    <i
+                        class="bi bi-graph-up-arrow
+                               fs-1 text-primary">
+
+                    </i>
+
+                    <h4 class="mt-4">
+
+                        Career Growth
+
+                    </h4>
+
+                    <p>
+
+                        Explore opportunities and
+                        make informed decisions
+                        about your future career.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer
+    class="text-center text-white py-4">
+
+    © <?php echo date('Y'); ?>
+   Sefakor Y. A. Osei / Career Recommendation System |
+    University of Greenwich MSc Project
 
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
