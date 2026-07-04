@@ -88,17 +88,50 @@ if (!isset($conn) || !$conn) {
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#logout">
-                        Logout
-                    </a>
-                </li>
+               <li class="nav-item">
+    <a class="nav-link"
+       href="student/questionnaire.php">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Career Assessment
-                    </a>
-                </li>
+        Assessment
+
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link"
+       href="student/history.php">
+
+        History
+
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link"
+       href="student/profile.php">
+
+        Profile
+
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link"
+       href="student/feedback.php">
+
+        Feedback
+
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link text-warning fw-bold"
+       href="student/logout.php">
+
+        Logout
+
+    </a>
+</li>
 
             </ul>
 
@@ -114,31 +147,150 @@ if (!isset($conn) || !$conn) {
 
             <div class="col-md-6">
 
+                <h2 class="fw-bold">
+
+Welcome Back,
+
+<span class="text-primary">
+
+<?= htmlspecialchars($_SESSION['name']); ?>
+
+</span>
+
+👋
+
+</h2>
+
+<p class="text-muted">
+
+Choose what you would like to do today.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<a href="student/questionnaire.php"
+class="text-decoration-none">
+
+<div class="card feature-card shadow text-center p-4">
+
+<i class="bi bi-ui-checks-grid
+text-primary fs-1"></i>
+
+<h5 class="mt-3">
+
+Start Assessment
+
+</h5>
+
+</div>
+
+</a>
+
+</div>
+
+<div class="col-md-3">
+
+<a href="student/history.php"
+class="text-decoration-none">
+
+<div class="card feature-card shadow text-center p-4">
+
+<i class="bi bi-clock-history
+text-success fs-1"></i>
+
+<h5 class="mt-3">
+
+Recommendation History
+
+</h5>
+
+</div>
+
+</a>
+
+</div>
+
+<div class="col-md-3">
+
+<a href="student/profile.php"
+class="text-decoration-none">
+
+<div class="card feature-card shadow text-center p-4">
+
+<i class="bi bi-person-circle
+text-warning fs-1"></i>
+
+<h5 class="mt-3">
+
+My Profile
+
+</h5>
+
+</div>
+
+</a>
+
+</div>
+
+<div class="col-md-3">
+
+<a href="student/feedback.php"
+class="text-decoration-none">
+
+<div class="card feature-card shadow text-center p-4">
+
+<i class="bi bi-star-fill
+text-danger fs-1"></i>
+
+<h5 class="mt-3">
+
+Feedback
+
+</h5>
+
+</div>
+
+</a>
+
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+                <div class="row align-items-center">
+
+            <!-- Left Side -->
+            <div class="col-md-6">
+
                 <h1 class="fw-bold display-5 mb-4">
-                    Receive Personalized and Explainable Career Recommendations
+                    Discover Your Ideal Career Path
                 </h1>
 
                 <p class="lead text-muted">
-                   Receive intelligent and explainable career
-                   recommendations based on your interests,
-                   strengths, preferences, and personal responses.
+                    Receive intelligent and explainable career
+                    recommendations based on your interests,
+                    strengths, preferences, and personal responses.
 
-                   The system analyses your inputs to suggest
-                   relevant career paths and explain why they
-                   may be suitable for you.
+                    The system analyses your inputs to suggest
+                    relevant career paths and explain why they
+                    may be suitable for you.
                 </p>
 
-                <a href="student/questionnaire.php" class="btn btn-primary btn-lg mt-3">
-                    Start Career Assessment
-                </a>
-
             </div>
 
+            <!-- Right Side -->
             <div class="col-md-6 text-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+
+                <img src="https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/c/f/cfe9f73480096f097d405903cdaadbac0185c9dadba584610101c8d3b0d68560/career-journey-slide2.png"
                      class="img-fluid"
-                     width="350">
+                     width="350"
+                     alt="Career Illustration">
+
             </div>
+
+        </div>
 
         </div>
 
